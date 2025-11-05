@@ -49,7 +49,8 @@ defmodule Taskexecutor.Jobs.JobTest do
       attrs = %{
         tasks: [
           %{name: "task-1", command: "echo hello"},
-          %{name: "task-2"}, # missing command
+          # missing command
+          %{name: "task-2"},
           %{name: "task-3", command: "echo world"}
         ]
       }
@@ -174,7 +175,8 @@ defmodule Taskexecutor.Jobs.JobTest do
       attrs = %{
         tasks: [
           %{name: "task-1", command: "echo 1"},
-          %{name: "task-1", command: "echo 2"} # duplicate name
+          # duplicate name
+          %{name: "task-1", command: "echo 2"}
         ]
       }
 
@@ -182,8 +184,6 @@ defmodule Taskexecutor.Jobs.JobTest do
       # But validation should catch if we add that check
       assert {:ok, job} = Job.new(attrs)
       assert length(job.tasks) == 2
-      # Both tasks have the same name, which is allowed at struct level
-      # but might cause issues in sorting (to be handled in Phase 2)
     end
   end
 end

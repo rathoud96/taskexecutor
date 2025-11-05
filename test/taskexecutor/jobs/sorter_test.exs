@@ -214,7 +214,11 @@ defmodule Taskexecutor.Jobs.SorterTest do
         tasks: [
           %Task{name: "task-1", command: "touch /tmp/file1", requires: []},
           %Task{name: "task-2", command: "cat /tmp/file1", requires: ["task-3"]},
-          %Task{name: "task-3", command: "echo 'Hello World!' > /tmp/file1", requires: ["task-1"]},
+          %Task{
+            name: "task-3",
+            command: "echo 'Hello World!' > /tmp/file1",
+            requires: ["task-1"]
+          },
           %Task{name: "task-4", command: "rm /tmp/file1", requires: ["task-2", "task-3"]}
         ]
       }

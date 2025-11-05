@@ -21,7 +21,7 @@ defmodule TaskexecutorWeb.JobController do
   """
   def process(conn, params) do
     format = determine_format(conn, params)
-    job_data = normalize_keys(params)
+    job_data = normalize_keys(conn.body_params || %{})
 
     case Jobs.process(job_data) do
       {:ok, sorted_tasks} ->
@@ -70,16 +70,23 @@ defmodule TaskexecutorWeb.JobController do
   defp determine_format(conn, params) do
     cond do
       # Check query parameter first
-      params["format"] == "bash" || params[:format] == "bash" -> :bash
-      params["format"] == "json" || params[:format] == "json" -> :json
+      params["format"] == "bash" || params[:format] == "bash" ->
+        :bash
+
+      params["format"] == "json" || params[:format] == "json" ->
+        :json
+
       # Check Accept header (case-insensitive)
       get_req_header(conn, "accept")
       |> Enum.any?(fn accept ->
         accept
         |> String.downcase()
         |> String.contains?("text/x-shellscript")
-      end) -> :bash
-      true -> :json
+      end) ->
+        :bash
+
+      true ->
+        :json
     end
   end
 end

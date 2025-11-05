@@ -257,3 +257,4 @@ mix test
 
 - **Credo**: Static code analysis (`mix credo`)
 - **ExCoveralls**: Test coverage (`mix test --cover`)
+- **Dialyzer**: Static type analysis (`mix dialyzer`)

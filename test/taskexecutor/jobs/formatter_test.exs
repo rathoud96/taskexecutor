@@ -27,7 +27,8 @@ defmodule Taskexecutor.Jobs.FormatterTest do
       script = Formatter.to_bash_script(tasks)
       lines = String.split(script, "\n", trim: true)
 
-      assert length(lines) == 4 # shebang + 3 commands
+      # shebang + 3 commands
+      assert length(lines) == 4
       assert List.first(lines) == "#!/usr/bin/env bash"
       assert Enum.at(lines, 1) == "touch /tmp/file1"
       assert Enum.at(lines, 2) == "cat /tmp/file1"

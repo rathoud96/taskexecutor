@@ -113,7 +113,8 @@ defmodule Taskexecutor.Integration.JobProcessingTest do
     test "validates required fields" do
       job_data = %{
         tasks: [
-          %{name: "task-1"} # missing command
+          # missing command
+          %{name: "task-1"}
         ]
       }
 

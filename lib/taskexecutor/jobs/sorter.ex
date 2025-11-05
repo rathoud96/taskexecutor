@@ -118,7 +118,8 @@ defmodule Taskexecutor.Jobs.Sorter do
       {sorted_deps, new_visited} =
         deps
         |> MapSet.to_list()
-        |> Enum.reduce({[], MapSet.put(visited, task_name)}, fn dep_name, {acc_deps, acc_visited} ->
+        |> Enum.reduce({[], MapSet.put(visited, task_name)}, fn dep_name,
+                                                                {acc_deps, acc_visited} ->
           {dep_sorted, dep_visited} =
             sort_dependencies_recursive(graph, dep_name, task_map, acc_visited, [])
 

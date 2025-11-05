@@ -1,0 +1,6 @@
+# Dialyzer ignore warnings file
+# Add patterns here to ignore specific warnings
+
+# Example patterns:
+# {:warn_return_no_exit, {'lib/taskexecutor/jobs.ex', :process, 1}}
+

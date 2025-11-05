@@ -10,7 +10,12 @@ defmodule Taskexecutor.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      test_coverage: [tool: ExCoveralls]
+      test_coverage: [tool: ExCoveralls],
+      dialyzer: [
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
+        ignore_warnings: ".dialyzer.ignore-warnings",
+        flags: [:error_handling, :underspecs]
+      ]
     ]
   end
 
@@ -53,7 +58,8 @@ defmodule Taskexecutor.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:excoveralls, "~> 0.18", only: :test}
+      {:excoveralls, "~> 0.18", only: :test},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
 
