@@ -7,6 +7,8 @@ defmodule TaskexecutorWeb.Router do
 
   scope "/api", TaskexecutorWeb do
     pipe_through :api
+
+    post "/jobs/process", JobController, :process
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
